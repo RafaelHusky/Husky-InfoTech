@@ -1,200 +1,324 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Époque Dorée - Vestidos de Luxo</title>
-    <meta name="description" content="Descubra vestidos exclusivos com inspiração Art Déco e Art Nouveau. Peças únicas que celebram a elegância e a arte.">
+    <title>Serviços de Informática | Rafael Alves [v4.9 - Dev Software]</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Poppins:wght@300;400;700&family=Julius+Sans+One&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: #FDFBF6;
-        }
-        .font-display { 
-            font-family: 'Cormorant Garamond', serif; 
-        }
-        .font-heading-deco {
-            font-family: 'Julius Sans One', sans-serif;
-        }
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-        }
+        /* Define as fontes customizadas */
+        .font-mono { font-family: 'Roboto Mono', monospace; }
+        .font-sans { font-family: 'Poppins', sans-serif; }
+
+        /* Estilo do canvas de fundo */
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
+
+        /* Efeito de vidro fosco (Glassmorphism) */
+        .glass-effect { background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(55, 65, 81, 0.3); }
+        
+        /* Animação para o cursor de digitação */
+        .typing-cursor { display: inline-block; width: 10px; height: 1.2rem; background-color: #06b6d4; animation: blink 0.7s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Estilo para a animação de fade-in no scroll */
+        .reveal { position: relative; transform: translateY(100px); opacity: 0; transition: 1s all ease; }
+        .reveal.active { transform: translateY(0); opacity: 1; }
     </style>
 </head>
+<body class="bg-gray-900 text-gray-300 font-sans">
 
-<body class="text-gray-800">
+    <canvas id="matrix-bg"></canvas>
 
-    <!-- BOTÃO FLUTUANTE DE WHATSAPP -->
-    <a href="https://wa.me/5511912345678?text=Olá!+Gostaria+de+mais+informações+sobre+os+vestidos." target="_blank" class="fixed bottom-5 right-5 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-transform hover:scale-110 flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-    </a>
-
-    <!-- CABEÇALHO -->
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="font-display text-3xl font-bold text-gray-900">
-                Nouveau
-            </a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#vestidos" class="font-heading-deco tracking-wider text-gray-600 hover:text-[#c0a062] transition-colors">VESTIDOS</a>
-                <a href="#sobre" class="font-heading-deco tracking-wider text-gray-600 hover:text-[#c0a062] transition-colors">NOSSA ESSÊNCIA</a>
-                <a href="#contato" class="font-heading-deco tracking-wider text-gray-600 hover:text-[#c0a062] transition-colors">CONTATO</a>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-mono font-bold text-white hover:text-cyan-400 transition-colors">Husky InfoTech</a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#marca" class="hover:text-cyan-400 transition-colors">Nossa Marca</a>
+                <a href="#promocoes" class="hover:text-cyan-400 transition-colors">Promoções</a>
+                <a href="#portfolio" class="hover:text-cyan-400 transition-colors">Portfólio</a>
+                <a href="#servicos" class="hover:text-cyan-400 transition-colors">Serviços</a>
+                <a href="#avaliacoes" class="hover:text-cyan-400 transition-colors">Avaliações</a>
+                <a href="#contato" class="hover:text-cyan-400 transition-colors">Contato</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <!-- SEÇÃO PRINCIPAL COM FUNDO ARTÍSTICO -->
-        <section class="relative text-white min-h-[80vh] flex items-center justify-center text-center py-20 overflow-hidden">
-            <!-- Imagem de fundo -->
-            <div class="absolute inset-0 z-0">
-                <img src="https://media.licdn.com/dms/image/v2/D4E22AQE0sB1m_j3Bow/feedshare-shrink_800/B4EZgab91AGoAk-/0/1752790197452?e=1755734400&v=beta&t=evSBhep656X3RuIVVKK6ODfzIWLiSg4g_7_kMVls760" alt="[Fundo artístico com padrões Art Déco dourados]" class="w-full h-full object-cover">
+    <main class="container mx-auto px-6 pt-28 relative z-10">
+        
+        <!-- SEÇÃO COMBINADA: MARCA E HERO -->
+        <section id="marca" class="py-20">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-16">
+                
+                <!-- Lado Esquerdo: Nossa Marca -->
+                <div class="w-full md:w-1/2 lg:w-2/5 reveal">
+                    <h2 class="text-3xl font-bold text-center text-white mb-8 font-mono">
+                    </h2>
+                    <div class="glass-effect p-8 rounded-lg border-2 border-cyan-500/50 transition-transform hover:-translate-y-2">
+                        <div class="flex flex-col items-center text-center">
+                            <img src="https://i.postimg.cc/HkxgKBmG/LOGO-Vermelho-PNG.png" style="width: 300px; height: auto;" 
+                            alt="Logo Info Services" class="w-40 h-40 mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160/0f172a/ffffff?text=Logo';">
+                            <h3 class="font-bold text-white text-2xl font-mono">Husky InfoTech</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lado Direito: Hero Content -->
+                <div class="w-full md:w-1/2 text-center md:text-left reveal">
+                    <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Soluções de TI</h1>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-400 mb-6">
+                        <span id="typing-text"></span><span class="typing-cursor"></span>
+                    </h2>
+                    <a href="#contato" class="bg-cyan-500 text-white font-bold py-3 px-8 rounded hover:bg-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/30">
+                        Solicitar Orçamento <i class="fab fa-whatsapp ml-2"></i>
+                    </a>
+                </div>
+
             </div>
-            <!-- Overlay para contraste -->
-            <div class="absolute inset-0 bg-black/60 z-10"></div>
-            <!-- Conteúdo -->
-            <div class="relative z-20 container mx-auto px-4">
-                <h1 class="font-display text-5xl md:text-7xl font-bold">A Arte de Vestir</h1>
-                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-gray-300">Coleções que unem a opulência do Art Déco e a delicadeza do Art Nouveau.</p>
-                <a href="#vestidos" class="mt-8 inline-block border-2 border-[#c0a062] text-white font-bold text-lg py-3 px-10 rounded-full hover:bg-[#c0a062] hover:text-black transition-colors">
-                    Ver Coleção
-                </a>
+        </section>
+
+        <!-- SEÇÃO DE PROMOÇÕES -->
+        <section id="promocoes" class="py-20 reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-mono">
+                <span class="text-cyan-400">//</span> PROMOÇÕES ESPECIAIS
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-effect p-6 rounded-lg border-2 border-green-500/50 transition-transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-3"><i class="fas fa-compact-disc text-3xl text-green-400 mr-4"></i><h3 class="font-bold text-white text-xl">Formatação sem Backup</h3></div>
+                        <p class="text-gray-400 mb-4">Instalação limpa do sistema operacional. Ideal para começar do zero com máxima performance.</p>
+                    </div>
+                    <div class="text-right mt-2"><p class="text-sm text-gray-500">A partir de</p><p class="text-2xl font-mono text-green-400">R$ 120,00</p></div>
+                </div>
+                <div class="glass-effect p-6 rounded-lg border-2 border-green-500/50 transition-transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-3"><i class="fas fa-bolt text-3xl text-green-400 mr-4"></i><h3 class="font-bold text-white text-xl">Limpeza Turbo</h3></div>
+                        <p class="text-gray-400 mb-4">Manutenção e limpeza física completa (hardware) com troca de pasta térmica.</p>
+                    </div>
+                    <div class="text-right mt-2"><p class="text-sm text-gray-500 line-through">De R$ 120,00</p><p class="text-2xl font-mono text-green-400">Por R$ 90,00</p></div>
+                </div>
+                <div class="glass-effect p-6 rounded-lg border-2 border-green-500/50 transition-transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-3"><i class="fas fa-star text-3xl text-green-400 mr-4"></i><h3 class="font-bold text-white text-xl">Landing Page Express</h3></div>
+                        <p class="text-gray-400 mb-4">Sua página de captura de contatos profissional e otimizada em tempo recorde.</p>
+                    </div>
+                    <div class="text-right mt-2"><p class="text-sm text-gray-500 line-through">De R$ 450,00</p><p class="text-2xl font-mono text-green-400">A partir de R$ 350,00</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PORTFÓLIO -->
+        <section id="portfolio" class="py-20 reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-mono"><span class="text-cyan-400">//</span> PROJETOS DESTAQUE</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col"><img src="https://img.freepik.com/vetores-premium/colecao-de-conjunto-de-design-de-logotipo-de-moveis-de-luxo_206986-10.jpg" alt="Company Planejado" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0f172a/ffffff?text=Projeto';"><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-white mb-2">Company Planejado</h3><p class="mb-4 text-gray-400 text-sm flex-grow">Site para criação de orçamentos de móveis sob medida.</p><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">React</span><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">Node.js</span></div><div class="flex space-x-4 mt-auto"><a href="https://rafaelhusky.github.io/Cal-Caixote-MarcenariaBETA/" target="_blank" class="text-white hover:text-cyan-400 transition-colors"><i class="fas fa-external-link-alt mr-2"></i>Ver Site</a><a href="#" class="text-white hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-2"></i>Código</a></div></div></div>
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col"><img src="https://rtxholding.com.br/wp-content/uploads/2025/04/Icone_Grupo_RTX_1.png" alt="Teste para RTX" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0f172a/ffffff?text=Projeto';"><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-white mb-2">Teste para RTX</h3><p class="mb-4 text-gray-400 text-sm flex-grow">Aplicação full stack (PHP, SQL, React) para teste técnico.</p><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">PHP</span><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">React</span></div><div class="flex space-x-4 mt-auto"><a href="https://rafaelhusky.github.io/Teste-RTX/" target="_blank" class="text-white hover:text-cyan-400 transition-colors"><i class="fas fa-external-link-alt mr-2"></i>Ver Site</a><a href="https://github.com/RafaelHusky/Teste-RTX/blob/main/index.html" target="_blank" class="text-white hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-2"></i>Código</a></div></div></div>
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col"><img src="https://img.cdndsgni.com/preview/10425429-m.jpg" alt="Nuvem Sorvetes" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0f172a/ffffff?text=Projeto';"><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-white mb-2">Nuvem Sorvetes</h3><p class="mb-4 text-gray-400 text-sm flex-grow">Site para sorveteria para exibir produtos e facilitar contato.</p><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">PHP</span><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">React</span></div><div class="flex space-x-4 mt-auto"><a href="https://rafaelhusky.github.io/Site-Sorveteria-/" target="_blank" class="text-white hover:text-cyan-400 transition-colors"><i class="fas fa-external-link-alt mr-2"></i>Ver Site</a><a href="https://github.com/RafaelHusky/Site-Sorveteria-/blob/main/index.html" target="_blank" class="text-white hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-2"></i>Código</a></div></div></div>
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col"><img src="https://media.licdn.com/dms/image/v2/D4E22AQGNeiWA60gnHg/feedshare-shrink_2048_1536/B4EZgZk_miGcAw-/0/1752775785859?e=1755734400&v=beta&t=H5qUcx2-j_JnR-ckH_tPDAQXJjppNil-UNUAOuikAgU" alt="Nexus Cursos" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-white mb-2">Nexus Cursos</h3><p class="mb-4 text-gray-400 text-sm flex-grow">Plataforma de Cursos Online</p><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">React</span><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">JavaScript</span></div><div class="flex space-x-4 mt-auto"><a href="https://rafaelhusky.github.io/Nexus-Cursos/" class="text-white hover:text-cyan-400 transition-colors"><i class="fas fa-external-link-alt mr-2"></i>Ver Site</a><a href="#" class="text-white hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-2"></i>Código</a></div></div></div>
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col"><img src="https://static.vecteezy.com/ti/vetor-gratis/p1/12627960-logotipo-perfeito-de-engenharia-mecanica-para-empresa-automotiva-vetor.jpg" alt="E-commerce Tech" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-white mb-2">Mecanica Aclei Disel Turbo</h3><p class="mb-4 text-gray-400 text-sm flex-grow">Site para Empresa Aclei Disel Turbo</p><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">Next.js</span><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded"></span></div><div class="flex space-x-4 mt-auto"><a href="https://rafaelhusky.github.io/Mecanica-Disel-Turbo-Aclei/" class="text-white hover:text-cyan-400 transition-colors"><i class="fas fa-external-link-alt mr-2"></i>Ver Site</a><a href="#" class="text-white hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-2"></i>Código</a></div></div></div>
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col"><img src="https://media.licdn.com/dms/image/v2/D4E22AQE0sB1m_j3Bow/feedshare-shrink_800/B4EZgab91AGoAk-/0/1752790197452?e=1755734400&v=beta&t=evSBhep656X3RuIVVKK6ODfzIWLiSg4g_7_kMVls760" alt="Sistema de venda" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-white mb-2">Loja Nouveau</h3><p class="mb-4 text-gray-400 text-sm flex-grow">Site De Venda de Roupas Femininas</p><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">Laravel</span><span class="bg-gray-800 border border-cyan-500 text-cyan-400 text-xs font-mono px-2 py-1 rounded">React</span></div><div class="flex space-x-4 mt-auto"><a href="https://rafaelhusky.github.io/Loja-de-Roupas-Nouveau/" class="text-white hover:text-cyan-400 transition-colors"><i class="fas fa-external-link-alt mr-2"></i>Ver Site</a><a href="#" class="text-white hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-2"></i>Código</a></div></div></div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE SERVIÇOS CONCLUÍDOS -->
+        <section id="servicos-concluidos" class="py-20 reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-mono"><span class="text-cyan-400">//</span> SERVIÇOS CONCLUÍDOS</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQHHpr1r70FwMg/feedshare-shrink_1280/B4DZgZ7orWH8Ao-/0/1752781721182?e=1755734400&v=beta&t=-2EU2kiBSfEesRYFIIfsmvCtEWkSDRW2swKpD40HMNc" alt="Montagem PC High end" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Montagem PC Gamer</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQFkPPk2cl8iiA/feedshare-shrink_1280/B4DZgZ_5IwHAAo-/0/1752782836821?e=1755734400&v=beta&t=9tOVdXXCj24-1Wvmlg-OooyJm_hnLI1cSVyYK2eLVjE" alt="Limpeza Ps5" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Limpeza PS5 Slim</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQG43V52Htu3Pw/feedshare-shrink_1280/B4DZgZ65gmGQAo-/0/1752781527752?e=1755734400&v=beta&t=I9sSXAhat_05B3YqDru604PfUI3wXkbh6pdwtFZ4SfU" alt="Montagem PC Gamer " class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Montagem PC Gamer</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQH-kufmDNhLSA/feedshare-shrink_2048_1536/B4DZgZ_rRcGsAs-/0/1752782780161?e=1755734400&v=beta&t=4W3eHtcQEuXGTUxPbqbP9wxJBfls3fir5F0vba_ObMg" alt="Limpeza ps4" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Limpeza PS4 Slim</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQHYcbwo5no6Nw/feedshare-shrink_1280/B4DZgZ7IqkGkAk-/0/1752781589711?e=1755734400&v=beta&t=zqa4ncaeFhEW4Vcd2pIBXi1yBXf-bv_y_AZxD9cZY0k" alt="Upgrade de Hardware" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Montagem PC Gamer</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQErkVJJcc4RAA/feedshare-shrink_1280/B4DZgZ_aQvHYAk-/0/1752782710657?e=1755734400&v=beta&t=XMp6Tc5tF_ICXH2PBlQ5PGP9WcIKn-JJJfcJN8yNtBU" alt="Montagem de PC" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Montagem de Placa de Video</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQGw15eAXyK6Sg/feedshare-shrink_800/B4DZgaAHrVGsAo-/0/1752782896556?e=1755734400&v=beta&t=-SxsjQCNQiZI4R4IJBGSvsz5h66spn2KNMfO52_Sf7g" alt="Limpeza de Notebook" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Limpeza Preventiva RTX 3080TI</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQH8Y4D0qbnRHw/feedshare-shrink_800/feedshare-shrink_800/0/1694540653478?e=1755734400&v=beta&t=JgFXaHa0M4Tew2_2JX7q0SwBgrudqj_QWf_cM3Zhws8" alt="Recuperação de Dados" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Setup Montado</p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQFWkQhqULI7Dw/feedshare-shrink_1280/B4DZgaKWl3GsAo-/0/1752785578998?e=1755734400&v=beta&t=RTdZDgNxOlM72Mc1zckFsPxrxnGZ9CEBsd9RhTJd8JQ" alt="Instalação de Câmeras" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Limpeza </p></div>
+                <div class="glass-effect rounded-lg overflow-hidden group text-center p-4 transition-transform hover:-translate-y-2"><img src="https://media.licdn.com/dms/image/v2/D4D22AQFEGGHoVomf_Q/feedshare-shrink_800/B4DZgaKWmAGsAk-/0/1752785578875?e=1755734400&v=beta&t=AxyYG9Tf8TtbsLaEyfrNeQaTRR6qlE5gjaLLAhNs8ro" alt="Sistema de Gestão" class="w-full h-32 object-cover rounded-md mb-3"><p class="text-sm font-semibold">Montagem PC Cougar</p></div>
+            </div>
+        </section>
+
+        <!-- Seções de Serviços -->
+        <section id="servicos" class="py-20 reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-mono"><span class="text-cyan-400">//</span> NOSSOS SERVIÇOS</h2>
+            <!-- SOFTWARE -->
+            <h3 class="text-2xl font-bold text-center text-cyan-400 mb-8 font-mono">MANUTENÇÃO DE SOFTWARE</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center mb-16">
+                <div class="p-4 glass-effect rounded-lg flex flex-col items-center justify-center transition-transform hover:-translate-y-2"><i class="fas fa-desktop text-5xl text-cyan-400 mb-2"></i><span class="font-mono">Formatação</span><span class="text-xs text-gray-400 mt-1">A partir de R$ 120,00</span></div>
+                <div class="p-4 glass-effect rounded-lg flex flex-col items-center justify-center transition-transform hover:-translate-y-2"><i class="fas fa-shield-virus text-5xl text-red-500 mb-2"></i><span class="font-mono">Remoção de Vírus</span><span class="text-xs text-gray-400 mt-1">A partir de R$ 90,00</span></div>
+                <div class="p-4 glass-effect rounded-lg flex flex-col items-center justify-center transition-transform hover:-translate-y-2"><i class="fas fa-download text-5xl text-green-500 mb-2"></i><span class="font-mono">Instalação de Software</span><span class="text-xs text-yellow-400 mt-1">Consultar</span></div>
+                <div class="p-4 glass-effect rounded-lg flex flex-col items-center justify-center transition-transform hover:-translate-y-2"><i class="fas fa-rocket text-5xl text-orange-400 mb-2"></i><span class="font-mono">Otimização</span><span class="text-xs text-gray-400 mt-1">A partir de R$ 80,00</span></div>
+                <div class="p-4 glass-effect rounded-lg flex flex-col items-center justify-center transition-transform hover:-translate-y-2"><i class="fas fa-database text-5xl text-blue-400 mb-2"></i><span class="font-mono">Recuperação de Dados</span><span class="text-xs text-yellow-400 mt-1">Consultar</span></div>
+            </div>
+             <!-- HARDWARE -->
+            <h3 class="text-2xl font-bold text-center text-cyan-400 mb-8 font-mono mt-10">MANUTENÇÃO DE HARDWARE</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="glass-effect p-6 rounded-lg flex items-center space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-cogs text-3xl text-cyan-400"></i><div><h3 class="font-bold text-white">Montagem de PCs</h3><p class="text-yellow-400 text-sm">Consultar Orçamento</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-center space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-pump-soap text-3xl text-cyan-400"></i><div><h3 class="font-bold text-white">Manutenção e Limpeza</h3><p class="text-gray-400 text-sm">A partir de R$ 100,00</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-center space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-memory text-3xl text-cyan-400"></i><div><h3 class="font-bold text-white">Upgrade de Componentes</h3><p class="text-yellow-400 text-sm">Consultar Orçamento</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-center space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-tools text-3xl text-cyan-400"></i><div><h3 class="font-bold text-white">Diagnóstico de Hardware</h3><p class="text-gray-400 text-sm">R$ 90,00</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-center space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-laptop-house text-3xl text-cyan-400"></i><div><h3 class="font-bold text-white">Conserto de Notebooks</h3><p class="text-yellow-400 text-sm">Consultar Orçamento</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-center space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-thermometer-half text-3xl text-cyan-400"></i><div><h3 class="font-bold text-white">Troca de Pasta Térmica</h3><p class="text-gray-400 text-sm">A partir de R$ 80,00</p></div></div>
+            </div>
+             <!-- CRIAÇÃO DE SOFTWARE -->
+            <h3 class="text-2xl font-bold text-center text-cyan-400 mb-8 font-mono mt-10">CRIAÇÃO DE SOFTWARE</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-file-code text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Sites Institucionais</h3><p class="text-gray-400 text-sm">Responsivos (HTML, CSS, JS, WordPress, etc.)</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-window-maximize text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Sistemas Web</h3><p class="text-gray-400 text-sm">Personalizados (orçamentos, cadastros, etc.)</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-bullseye text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Landing Pages</h3><p class="text-gray-400 text-sm">Para divulgação de produtos e serviços.</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-wrench text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Manutenção de Sites</h3><p class="text-gray-400 text-sm">Correção de bugs, layout e SEO.</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-link text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Integração com APIs</h3><p class="text-gray-400 text-sm">Pagamentos, redes sociais, e-mails, etc.</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-address-card text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Portfólios Online</h3><p class="text-gray-400 text-sm">Para profissionais e empresas.</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-server text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Hospedagem e Domínio</h3><p class="text-gray-400 text-sm">Configuração de e-mails profissionais.</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-chart-line text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Dashboards</h3><p class="text-gray-400 text-sm">Painéis administrativos com relatórios.</p></div></div>
+                <div class="glass-effect p-6 rounded-lg flex items-start space-x-4 transition-transform hover:-translate-y-1"><i class="fas fa-robot text-3xl text-purple-400 mt-1"></i><div><h3 class="font-bold text-white">Automatização de Tarefas</h3><p class="text-gray-400 text-sm">Scripts para envio de relatórios, etc.</p></div></div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE AVALIAÇÕES -->
+        <section id="avaliacoes" class="py-20 reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-mono"><span class="text-cyan-400">//</span> O QUE DIZEM OS CLIENTES</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-effect p-6 rounded-lg flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/48x48/0f172a/ffffff?text=J" alt="Avatar Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">João Silva</h4>
+                            <div class="text-yellow-400"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic">"Serviço impecável! Meu computador ficou mais rápido do que quando era novo. Recomendo demais o trabalho do Rafael."</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/48x48/0f172a/ffffff?text=M" alt="Avatar Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Maria Oliveira</h4>
+                            <div class="text-yellow-400"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic">"Atendimento excelente e muito profissional. Resolveu meu problema com o notebook rapidamente. Com certeza voltarei a contratar."</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/48x48/0f172a/ffffff?text=C" alt="Avatar Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Carlos Pereira</h4>
+                            <div class="text-yellow-400"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic">"Muito bom! Me ajudou a montar o PC dos sonhos, explicando cada componente. O resultado final ficou incrível."</p>
+                </div>
             </div>
         </section>
         
-        <!-- DIVISÓRIA DECORATIVA -->
-        <div class="w-full py-10 bg-[#FDFBF6] flex justify-center">
-            <svg width="150" height="30" viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 10 H15 L20 5 L25 10 L30 15 L35 10 H45 L50 0 L55 10 H65 L70 15 L75 10 L80 5 L85 10 H100" stroke="#c0a062" stroke-width="2"/>
-                <circle cx="50" cy="10" r="3" fill="#c0a062"/>
-            </svg>
-        </div>
-
-
-        <!-- SEÇÃO DE VESTIDOS -->
-        <section id="vestidos" class="py-16 md:py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="font-heading-deco text-4xl md:text-5xl font-bold tracking-widest">NOSSOS VESTIDOS</h2>
-                    <p class="text-gray-600 mt-4 max-w-xl mx-auto">Cada peça é uma celebração da forma feminina, com detalhes que contam uma história.</p>
-                </div>
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
-                    <!-- Produtos são inseridos aqui -->
-                </div>
+        <section id="contato" class="py-20 text-center reveal">
+            <h2 class="text-3xl font-bold text-white mb-4 font-mono">Vamos conversar?</h2>
+            <p class="max-w-xl mx-auto text-lg mb-8">
+                Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à vontade para entrar em contato.
+            </p>
+            <a href="https://api.whatsapp.com/send?phone=5544997289671&text=Ol%C3%A1%2C%20vi%20seu%20site%20de%20servi%C3%A7os%20e%20gostaria%20de%20conversar." target="_blank" class="bg-green-500 text-white font-bold py-4 px-8 rounded hover:bg-green-600 transition-all duration-300 shadow-lg shadow-green-500/30 text-lg">
+                <i class="fab fa-whatsapp mr-3"></i>Iniciar Conversa no WhatsApp
+            </a>
+            <div class="mt-12 flex justify-center space-x-6">
+                 <a href="https://www.linkedin.com/in/rafael-alves-082423252/" target="_blank" class="text-4xl text-gray-400 hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+                 <a href="https://github.com/RafaelHusky" target="_blank" class="text-4xl text-gray-400 hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
             </div>
         </section>
-        
-        <!-- DIVISÓRIA DECORATIVA -->
-        <div class="w-full py-10 bg-white flex justify-center">
-             <svg width="150" height="30" viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 10 H15 L20 5 L25 10 L30 15 L35 10 H45 L50 0 L55 10 H65 L70 15 L75 10 L80 5 L85 10 H100" stroke="#c0a062" stroke-width="2"/>
-                <circle cx="50" cy="10" r="3" fill="#c0a062"/>
-            </svg>
-        </div>
-
-        <!-- SEÇÃO SOBRE -->
-        <section id="sobre" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-                <div class="w-full h-full">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E22AQE0sB1m_j3Bow/feedshare-shrink_800/B4EZgab91AGoAk-/0/1752790197452?e=1755734400&v=beta&t=evSBhep656X3RuIVVKK6ODfzIWLiSg4g_7_kMVls760" alt="[Mulher elegante em ambiente com estética Art Nouveau]" class="rounded-lg shadow-xl object-cover w-full h-full">
-                </div>
-                <div>
-                    <h2 class="font-heading-deco text-4xl font-bold tracking-widest">NOSSA ESSÊNCIA</h2>
-                    <p class="mt-4 text-gray-600">A Nouveau nasceu de um sonho: resgatar a beleza atemporal de eras passadas. Acreditamos que um vestido é mais que uma peça de roupa; é uma forma de expressão, uma obra de arte que se move com você.</p>
-                    <p class="mt-4 text-gray-600">Nossas coleções são cuidadosamente selecionadas, buscando o equilíbrio perfeito entre as linhas geométricas e luxuosas do Art Déco e as formas fluidas e naturais do Art Nouveau. Celebre sua individualidade com peças que transcendem o tempo.</p>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- RODAPÉ -->
-    <footer id="contato" class="bg-gray-900 text-white">
-        <div class="container mx-auto px-4 py-16 text-center">
-            <h2 class="font-heading-deco text-4xl font-bold tracking-widest">CONTATO</h2>
-            <p class="mt-4 max-w-xl mx-auto text-gray-300">Tem alguma dúvida ou gostaria de um atendimento personalizado? Fale conosco pelo WhatsApp. Será um prazer ajudar.</p>
-            <div class="mt-8">
-                <a href="https://wa.me/5511912345678?text=Olá!+Gostaria+de+mais+informações+sobre+os+vestidos." target="_blank" class="bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition-colors flex items-center gap-3 mx-auto max-w-xs justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M10.25 18a.75.75 0 00.75-.75V3.81l4.47 4.47a.75.75 0 001.06-1.06l-6-6a.75.75 0 00-1.06 0l-6 6a.75.75 0 101.06 1.06l4.47-4.47v13.44a.75.75 0 00.75.75z" clip-rule="evenodd" /></svg>
-                    <span>Fale Conosco no WhatsApp</span>
-                </a>
-            </div>
-            <div class="mt-12 border-t border-gray-700 pt-8">
-                <p>&copy; 2025 Époque Dorée. Todos os direitos reservados.</p>
-            </div>
-        </div>
+    <footer class="text-center py-6 text-gray-500 font-mono text-sm relative z-10">
+        <p>Desenvolvido por Rafael Alves da Silva &copy; 2025</p>
     </footer>
+    
+    <a href="https://api.whatsapp.com/send?phone=5544997289671&text=Ol%C3%A1%2C%20vi%20seu%20site%20de%20servi%C3%A7os%20e%20gostaria%20de%20conversar." target="_blank" class="fixed bottom-6 right-6 bg-green-500 w-14 h-14 rounded-full flex items-center justify-center text-white text-3xl shadow-lg hover:bg-green-600 hover:scale-110 transition-all z-20">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // --- LISTA DE PRODUTOS ---
-    const products = [
-        { name: 'Vestido Gatsby Dourado', price: '499,90', image: 'https://powerlook.vtexassets.com/arquivos/ids/166144-800-auto?v=636961350504430000&width=800&height=auto&aspect=true' },
-        { name: 'Vestido Nouveau Floral', price: '549,90', image: 'https://photos.enjoei.com.br/vestidos-farm-feminino-vestido-curto-110969170/800x800/czM6Ly9waG90b3MuZW5qb2VpLmNvbS5ici9wcm9kdWN0cy8xMzE2MjE0Ny9hZTg5NTJlM2FkZmNkMjliMmM0NzFjODVhYjlmNWRkOC5qcGc' },
-        { name: 'Vestido Metropolis Preto', price: '479,90', image: 'https://static.ecosweb.com.br/public/produtos/moda-feminina/blusa-de-alca/vestido-longo-malha-alcas-de-corrente-preto_383910_600_1.webp' },
-        { name: 'Vestido Libélula de Seda', price: '629,90', image: 'https://photos.enjoei.com.br/vestido-longo-alcinha-farm-noronha-de-seda-borboletas/1200xN/czM6Ly9waG90b3MuZW5qb2VpLmNvbS5ici9wcm9kdWN0cy81NDQ3MzA3L2I1MDU3MmEyMzUyZmFjOTZkODM0YzY5YmQwOTllMDU1LmpwZw' },
-        { name: 'Vestido Geométrico Esmeralda', price: '519,90', image: 'https://images.tcdn.com.br/img/img_prod/483663/vestido_geometrico_verde_amanda_bella_5108_2_f3ea178a95553b379b2c53b7dbe558cb.jpg' },
-        { name: 'Vestido Curvas de Marfim', price: '489,90', image: 'https://www.carmensteffens.com.br/ccstore/v1/images/?source=/file/v946822050305071441/products/HV854922145_1.jpg&height=940&width=940' },
-        { name: 'Vestido Leque Imperial', price: '599,90', image: 'https://www.dhresource.com/webp/m/0x0/f2/albu/g6/M01/66/48/rBVaR1vEPD-AYxiVAAINX6-3Odw433.jpg' },
-        { name: 'Vestido Orquídea Noturna', price: '559,90', image: 'https://brandstime.com.br/cdn/shop/files/vestido_orqu_dea_longo_rom_ntico_com_decote_em_v_mangas_babado_1.jpg?v=1740845959' },
-        { name: 'Vestido Vitral Rosé', price: '529,90', image: 'https://ledress.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/8/0/8019v014_085.jpg' },
-        { name: 'Vestido Pavão Real', price: '649,90', image: 'https://a-static.mlcdn.com.br/1500x1500/vestido-cdssl-plus-size-comprimento-de-cha-2-pecas-pavao-mae-da-noiva-vestidos-formais-de-verao-chiffon-de-renda-manga-3-4-para-mulheres-tamanho-16/nocnocasia/oob0dgtksyqm/1975a0e4ae226dbe83388fdcc0adfe9e.jpeg' },
-        { name: 'Vestido Chrysler de Veludo', price: '699,90', image: 'https://images.tcdn.com.br/img/img_prod/926736/vestido_veludo_fendas_shanghai_77931887_1_c62262c83d512ef7bee15228d98a999b.jpg' },
-        { name: 'Vestido Íris Acetinado', price: '539,90', image: 'https://d3vnyi5j6ba1mc.cloudfront.net/Custom/Content/Products/14/82/1482193_vestido-longo-slim-com-fendas-acetinado-444608057_l1_638019670029882953.webp' },
-        { name: 'Vestido Zig-Zag Vinho', price: '499,90', image: 'https://myplace.vtexassets.com/arquivos/ids/316575/0941201-02785-1.jpg?v=638864576876400000' },
-        { name: 'Vestido Glicínia Lilás', price: '569,90', image: 'https://www.lavetir.com.br/cdn/shop/files/9627029-Wisteria_420x.jpg?v=1713963617' },
-        { name: 'Vestido Sol de Ouro', price: '589,90', image: 'https://static.ecosweb.com.br/public/produtos/moda-feminina/vestido-midi/vestido-midi-soltinho-lilas-decote-v-e-bolsos_345076_600_1.webp' },
-        { name: 'Vestido Folhagem de Outono', price: '549,90', image: 'https://images.tcdn.com.br/img/img_prod/755216/vestido_longo_amarracao_decote_estampa_coqueiros_de_outono_17885_3_cfab29f58a1e439eb78d2c33e754c54e.jpeg' },
-        { name: 'Vestido Noite Estrelada', price: '619,90', image: 'https://photos.enjoei.com.br/vestido-van-gogh-noite-estrelada-98652114/800x800/czM6Ly9waG90b3MuZW5qb2VpLmNvbS5ici9wcm9kdWN0cy8zMzgzOTQyMS9hYWFmZTMyZTNjNDgxYjNhNDE5NzBjMzI1Y2QwNmQ1OS5qcGc' },
-        { name: 'Vestido Cisne Branco', price: '579,90', image: 'https://i.etsystatic.com/25303638/r/il/b9b617/5934837529/il_570xN.5934837529_mjjz.jpg' },
-        { name: 'Vestido Art déco Rubi', price: '529,90', image: 'https://brandstime.com.br/cdn/shop/files/vestido_vermelho_rubi_longo_ombro_nico_4.jpg?v=1740845418' },
-        { name: 'Vestido Papoula Delicada', price: '559,90', image: 'https://images.tcdn.com.br/img/img_prod/1014355/dress_papoula_spring_906145_1_71a20068e42432df6ce6ffd8e16122f4.jpg' },
-        { name: 'Vestido Metrópole Prateado', price: '639,90', image: 'https://d3vnyi5j6ba1mc.cloudfront.net/Custom/Content/Products/21/24/2124886_vestido-metalizado-441406159_z1_638693401847753801.webp' },
-        { name: 'Vestido Jardim Secreto', price: '589,90', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzSvx2yi25aMMxCTDKnsALwljNMMMBvP7aNA&s2' },
-        { name: 'Vestido Linhas de Ouro', price: '599,90', image: 'https://images.tcdn.com.br/img/img_prod/1067765/vestido_longo_com_fios_dourado_1291_3283_3_04b8ed9f1f2acbd17c0222f2bc8cbdb8.jpg' },
-        { name: 'Vestido Lótus Rosa', price: '549,90', image: 'https://anavargas.com.br/cdn/shop/products/124038VM_003_1-VESTIDO-MIDI-BOTAO-BOMBE-ALCA-LARGA_1.jpg?v=1616170871' },
-        { name: 'Vestido Empire State', price: '679,90', image: 'https://fernandaramosstore.com.br/wp-content/uploads/2024/12/fernandaramosstore_com_br-vestido-feminino-longo-rita-com-bojo-e-detalhe-plissado-off-white.jpeg' },
-        { name: 'Vestido Ramo de Oliveira', price: '539,90', image: 'https://babadotop.vteximg.com.br/arquivos/ids/4900058-548-806/23005peq03230.jpg?v=638139065955270000' },
-        { name: 'Vestido Franjas de Cristal', price: '729,90', image: 'https://images.tcdn.com.br/img/img_prod/974357/vestido_lanca_perfume_preto_midi_assimetrico_com_franja_e_cristais_129799_1_e026aa0c478d8434b7cdb3347b34e3dd.jpeg' },
-        { name: 'Vestido Dama da Noite', price: '619,90', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoMquOnCshKue842qUYFtrH_wQr3XST34LqASK2xjhgcvo0Esi5-TV1sQQLWw6WNtRn5k&usqp=CAU' },
-        { name: 'Vestido Arabesco Dourado', price: '599,90', image: 'https://cdn.shopify.com/s/files/1/0626/9222/9376/files/557_ad78e8c1-f9c1-4cb2-95d3-3961119d22f4.jpg?v=1699995404' },
-        { name: 'Vestido Magnólia Branca', price: '579,90', image: 'https://static.dafiti.com.br/p/Mamorena-Vestido-Mamorena-Midi-em-Linho-com-Bordado-6423-89995531-1-zoom.jpg' },
-    ];
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- EFEITO DE FUNDO "MATRIX RAIN" ---
+            const canvas = document.getElementById('matrix-bg');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const alphabet = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const fontSize = 16;
+            const columns = canvas.width / fontSize;
+            const rainDrops = [];
+            for (let x = 0; x < columns; x++) { rainDrops[x] = 1; }
+            const draw = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.09)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#06b6d4';
+                ctx.font = fontSize + 'px monospace';
+                for (let i = 0; i < rainDrops.length; i++) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                    if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.985) { rainDrops[i] = 0; }
+                    rainDrops[i]++;
+                }
+            };
+            setInterval(draw, 55);
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                const newColumns = canvas.width / fontSize;
+                rainDrops.length = 0;
+                 for (let x = 0; x < newColumns; x++) { rainDrops[x] = 1; }
+            });
 
-    const productGrid = document.getElementById('product-grid');
+            // --- EFEITO DE DIGITAÇÃO ---
+            const typingElement = document.getElementById('typing-text');
+            const texts = ["Técnico de Informática.", "Manutenção de Computadores.", "Desenvolvedor de Sites."];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            function type() {
+                const currentText = texts[textIndex];
+                let typeSpeed = isDeleting ? 50 : 150;
+                if (isDeleting) {
+                    typingElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                if (!isDeleting && charIndex === currentText.length) {
+                    typeSpeed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typeSpeed = 500;
+                }
+                setTimeout(type, typeSpeed);
+            }
+            type();
 
-    function renderProducts() {
-        if (!productGrid) return;
-        productGrid.innerHTML = '';
-        products.forEach(product => {
-            const productElement = document.createElement('div');
-            productElement.className = 'group product-card';
-            productElement.innerHTML = `
-                <div class="w-full bg-gray-200 rounded-lg overflow-hidden aspect-[4/5]">
-                    <img src="${product.image}" alt="[Imagem de ${product.name}]" class="w-full h-full object-cover object-center group-hover:opacity-85 transition-opacity duration-300">
-                </div>
-                <h3 class="mt-4 text-lg font-semibold text-gray-800">${product.name}</h3>
-                <p class="mt-1 text-md font-bold text-[#c0a062]">R$ ${product.price}</p>
-            `;
-            productGrid.appendChild(productElement);
+            // --- ANIMAÇÃO DE SCROLL (FADE-IN) ---
+            function revealOnScroll() {
+                const reveals = document.querySelectorAll('.reveal');
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    } else {
+                        reveals[i].classList.remove('active');
+                    }
+                }
+            }
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Revela elementos já visíveis no carregamento
         });
-    }
-    renderProducts();
-});
-</script>
-
+    </script>
 </body>
 </html>
